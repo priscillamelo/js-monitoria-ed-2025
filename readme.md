@@ -173,3 +173,10 @@ Para criar a documentação:
 ```
 npm run docs
 ```
+ 
+
+Caso não execute, utilize o seguinte comando:
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
