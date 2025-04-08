@@ -1,4 +1,4 @@
-import PilhaSequencia from "../src/Q5";
+import PilhaSequencia from "../../src/lista-01-pilhas/Q5";
 
 let pilhaSequencia;
 

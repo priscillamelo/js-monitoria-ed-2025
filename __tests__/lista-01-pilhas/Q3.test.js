@@ -1,4 +1,4 @@
-import PilhaAuxiliar from "../src/Q3";
+import PilhaAuxiliar from "../../src/lista-01-pilhas/Q3";
 
 let pilha;
 

@@ -1,4 +1,4 @@
-import PilhaRPN from "../src/Q6";
+import PilhaRPN from "../../src/lista-01-pilhas/Q6";
 
 let pilhaRPN;
 

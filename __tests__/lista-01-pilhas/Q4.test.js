@@ -1,4 +1,4 @@
-import PilhaBinaria from "../src/Q4";
+import PilhaBinaria from "../../src/lista-01-pilhas/Q4";
 
 let pilhaBinaria;
 

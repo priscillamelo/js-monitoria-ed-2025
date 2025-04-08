@@ -1,4 +1,4 @@
-import PilhaSemDuplicatas from "../src/Q7";
+import PilhaSemDuplicatas from "../../src/lista-01-pilhas/Q7";
 
 let pilhaSemDuplicatas;
 

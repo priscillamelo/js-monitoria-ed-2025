@@ -1,4 +1,4 @@
-import PilhaDupla from "../src/Q2";
+import PilhaDupla from "../../src/lista-01-pilhas/Q2";
 
 let doubleStack;
 
