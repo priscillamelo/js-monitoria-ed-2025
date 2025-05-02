@@ -5,9 +5,10 @@ class PilhaSequencia {
     this.topo = 0;
   }
 
-  verificaFormacao(dado) {
+  verificarFormacao(dado) {
     for (let i = 0; i < dado.length; i++) {
       const elemento = dado[i];
+      const topo = this.peek();
 
       const isColchete = elemento === "[" || elemento === "]";
       const isParenteses = elemento === "(" || elemento === ")";
@@ -16,12 +17,7 @@ class PilhaSequencia {
         if (this.isEmpty()) {
           this.push(elemento);
         } else {
-          const topo = this.peek();
-
-          if (
-            (elemento === "]" && topo === "[") ||
-            (elemento === ")" && topo === "(")
-          ) {
+          if ( (elemento === "]" && topo === "[") || (elemento === ")" && topo === "(") ) {
             this.pop();
           } else {
             this.push(elemento);
@@ -64,14 +60,6 @@ class PilhaSequencia {
     if (!this.isEmpty()) {
       return this.stack[this.topo - 1];
     }
-  }
-
-  clear() {
-    this.topo = 0;
-  }
-
-  toString() {
-    return this.stack.toString();
   }
 }
 

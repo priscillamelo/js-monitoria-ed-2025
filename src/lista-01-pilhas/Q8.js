@@ -31,25 +31,27 @@ class Stack {
     }
 
     push(dado) {
-        let ultima = this.peek();
+        let ultimaPilha = this.peek();
+        
+        const deveCriarNovaPilha = this.isEmpty() || ultimaPilha.estaCheia();
 
-        if (!ultima || ultima.estaCheia()) {
+        if (deveCriarNovaPilha) {
             const novaPilha = new PilhaDePratos();
             novaPilha.empilha(dado);
             this.stack[this.topo] = novaPilha;
             this.topo++; // INCREMENTA porque uma nova pilha foi adicionada
         } else {
-            ultima.empilha(dado); // Prato adicionado, mas a pilha já existia
+            ultimaPilha.empilha(dado); // Prato adicionado, mas a pilha já existia
         }
     }
 
     pop() {
         if(this.isEmpty()) return null
 
-        let ultima = this.peek();
-        let valor = ultima.desempilha();
+        let ultimaPilha = this.peek();
+        let valor = ultimaPilha.desempilha();
 
-        if (ultima.estaVazia()) this.topo--;
+        if (ultimaPilha.estaVazia()) this.topo--;
 
         return valor;
     }
@@ -63,21 +65,7 @@ class Stack {
     }
 
     peek() {
-        if (this.isEmpty()) return this.topo
-        return this.stack[this.topo - 1];
-    }
-
-    clear() {
-        this.topo = 0;
-    }
-
-    toString() {
-        let pilha = "";
-        for (const pilhaElement of this.stack) {
-            pilha+= pilhaElement;
-        }
-
-        return pilha;
+        if (!this.isEmpty()) return this.stack[this.topo - 1];
     }
 }
 

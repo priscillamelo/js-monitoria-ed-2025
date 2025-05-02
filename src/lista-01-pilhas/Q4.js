@@ -6,21 +6,22 @@ class PilhaBinaria {
   }
 
   decimalToBinario(numero) {
-    if (numero === 0) return 0;
-    let valorBinarioInvertido = "1";
+    if (numero === 0) return "0";
+    
+    let valorBinario = "";
 
-    while (numero !== 1) {
+    while (numero > 0) {
       let resto = numero % 2;
       numero = parseInt(numero / 2);
       this.push(resto);
     }
 
     while (!this.isEmpty()) {
-      valorBinarioInvertido += this.peek();
+      valorBinario += this.peek();
       this.pop();
     }
 
-    return parseInt(valorBinarioInvertido);
+    return valorBinario;
   }
 
   push(dado) {
@@ -56,10 +57,6 @@ class PilhaBinaria {
 
   clear() {
     this.topo = 0;
-  }
-
-  toString() {
-    return this.stack.toString();
   }
 }
 

@@ -7,15 +7,17 @@ class PilhaAuxiliar {
   }
 
   inverterExtremidades() {
+    
     for (let i = 0; i < this.stack.length; i++) {
       if (i === 0) {
-        this.stackAux[i] = this.stack[this.topo - 1];
-      } else if (i === this.topo - 1) {
+        this.stackAux[i] = this.stack[this.length() - 1];
+      } else if (i === this.length() - 1) {
         this.stackAux[i] = this.stack[0];
       } else {
         this.stackAux[i] = this.stack[i];
       }
     }
+    
     return this.stackAux.join("");
   }
 

@@ -10,11 +10,13 @@ class PilhaSemDuplicatas {
     let positionDuplicata = 0;
 
     for (let i = 0; i < this.length(); i++) {
+      // PILHA: 2, 1, 4, 4
       let elemento = this.stack[i];
 
       if(i === 0) {
         stackAux[positionDuplicata] = elemento;
         positionDuplicata++;
+        // PILHA AUXILIAR: 2, 1, 4
       } else {
         let contains = 0;
         for (let element of stackAux) {
@@ -41,7 +43,6 @@ class PilhaSemDuplicatas {
   pop() {
     if (this.isEmpty()) throw new Error("Stack underflow");
     this.topo--;
-
   }
 
   isEmpty() {

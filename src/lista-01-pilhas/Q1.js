@@ -7,6 +7,7 @@ class Pilha {
 
   invert(word) {
     let invertWord = "";
+    
     for (let i = 0; i < word.length; i++) {
       this.push(word[i]);
     }
