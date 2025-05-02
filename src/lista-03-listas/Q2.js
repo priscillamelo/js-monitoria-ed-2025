@@ -45,10 +45,7 @@ class FilaDinamica {
     let count = 0;
     let current = this.inicio;
     
-    console.log("Current = " + current);
-    console.log("Valor de current = " + current.dado);
-
-    while (current) {
+    while (current !== null) {
       count++;
       current = current.next;
     }

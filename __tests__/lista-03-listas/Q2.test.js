@@ -18,6 +18,24 @@ test('Adicionar elementos na fila.', () => {
   expect(filaDinamica.front()).toBe(1);
 });
 
+test('Verifica o tamanho da fila após várias operações.', () => {
+  filaDinamica.enqueue(1);
+  filaDinamica.enqueue(2);
+  filaDinamica.enqueue(3);
+
+  expect(filaDinamica.length()).toBe(3);
+
+  filaDinamica.dequeue(); // remove 1
+  expect(filaDinamica.length()).toBe(2);
+
+  filaDinamica.dequeue(); // remove 2
+  filaDinamica.enqueue(4);
+  expect(filaDinamica.length()).toBe(2);
+
+  filaDinamica.clear();
+  expect(filaDinamica.length()).toBe(0);
+});
+
 test('Remoção dos elementos respeitando a ordem FIFO.', () => {
   filaDinamica.enqueue(10);
   filaDinamica.enqueue(20);

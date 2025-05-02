@@ -1,7 +1,7 @@
 class Node {
   constructor(dado) {
     this.dado = dado;
-    this.next = null;
+    this.proximo = null;
   }
 }
 
