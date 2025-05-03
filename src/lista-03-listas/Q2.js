@@ -14,7 +14,7 @@ class FilaDinamica {
     if (this.isEmpty()) {
       this.inicio = this.fim = newNode;
     } else {
-      this.fim.next = newNode; // O ultimo no da fila aponta para o novoNo
+      this.fim.proximo = newNode; // O ultimo no da fila aponta para o novoNo
       this.fim = newNode; // Atualiza a referência para o último nó da fila
     }
   }
@@ -25,7 +25,7 @@ class FilaDinamica {
 
     let frontFila = this.front();
 
-    this.inicio = this.inicio.next; // Atualiza a referência para o próximo nó
+    this.inicio = this.inicio.proximo; // Atualiza a referência para o próximo nó
 
     return frontFila;
   }
@@ -45,9 +45,9 @@ class FilaDinamica {
     let count = 0;
     let current = this.inicio;
     
-    while (current !== null) {
+    while (current) {
       count++;
-      current = current.next;
+      current = current.proximo;
     }
     return count;
   }
@@ -62,7 +62,7 @@ class FilaDinamica {
     
     while (current) {
       result += current.dado;
-      current = current.next;
+      current = current.proximo;
     }
     return result;
   }
