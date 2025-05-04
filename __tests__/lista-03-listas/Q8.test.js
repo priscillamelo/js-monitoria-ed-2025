@@ -6,25 +6,58 @@ beforeEach(() => {
   lista = new ListaPessoas();
 });
 
-test('Deve ordenar por nome em ordem alfabética', () => {
-  lista.adicionar('Carlos', 30);
-  lista.adicionar('Ana', 25);
-  lista.adicionar('Bruno', 20);
+test('Deve adicionar pessoas (nome, idade)', () => {
+  lista.add('Carlos', 30);
+  lista.add('Ana', 25);
+  lista.add('Bruno', 20);
 
-  const ordenada = lista.ordenarPorNome();
-  expect(ordenada.toString()).toBe('(Ana, 25) -> (Bruno, 20) -> (Carlos, 30) -> null');
+  expect(lista.isEmpty()).toBe(false);
+});
+
+test('Deve retornar as pessoas adicionadas sem ordenação.', () => {
+  lista.add('Carlos', 30);
+  lista.add('Ana', 25);
+  lista.add('Bruno', 20);
+
+  expect(lista.toString()).toBe("Carlos: 30, Ana: 25, Bruno: 20");
+});
+
+test('Deve retornar o próprio elemento caso tenha sido o único adicionado.', () => {
+  lista.add('Carlos', 30);
+
+  expect(lista.ordenarPorNome()).toBe("Carlos: 30");
+  expect(lista.ordenarPorIdade()).toBe("Carlos: 30");
+});
+
+
+test('Deve ordenar por nome em ordem alfabética', () => {
+  lista.add('Carlos', 30);
+  lista.add('Ana', 25);
+  lista.add('Bruno', 20);
+
+  expect(lista.ordenarPorNome()).toBe("Ana: 25, Bruno: 20, Carlos: 30");
+});
+
+test('Deve ordenar por nome em ordem alfabética e idade (menor -> maior)', () => {
+  lista.add('Bruna', 25);
+  lista.add('Carlos', 30);
+  lista.add('Ana', 25);
+  lista.add('Bruno', 20);
+  lista.add('Carla', 18);
+
+  expect(lista.ordenarPorNome()).toBe("Ana: 25, Bruna: 25, Bruno: 20, Carla: 18, Carlos: 30");
+  expect(lista.ordenarPorIdade()).toBe("Carla: 18, Bruno: 20, Ana: 25, Bruna: 25, Carlos: 30");
 });
 
 test('Deve ordenar por idade em ordem crescente', () => {
-  lista.adicionar('Carlos', 30);
-  lista.adicionar('Ana', 25);
-  lista.adicionar('Bruno', 20);
+  lista.add('Carlos', 30);
+  lista.add('Ana', 25);
+  lista.add('Bruno', 20);
 
-  const ordenada = lista.ordenarPorIdade();
-  expect(ordenada.toString()).toBe('(Bruno, 20) -> (Ana, 25) -> (Carlos, 30) -> null');
+  expect(lista.ordenarPorIdade()).toBe("Bruno: 20, Ana: 25, Carlos: 30");
 });
 
 test('Deve manter lista vazia se nenhum elemento for adicionado', () => {
-  expect(lista.ordenarPorNome().toString()).toBe('null');
-  expect(lista.ordenarPorIdade().toString()).toBe('null');
+  expect(lista.ordenarPorNome()).toBeNull();
+  expect(lista.ordenarPorIdade()).toBeNull();
 });

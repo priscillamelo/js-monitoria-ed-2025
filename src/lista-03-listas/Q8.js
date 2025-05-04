@@ -2,15 +2,16 @@ import Node from "../Node";
 
 class ListaPessoas {
   constructor() {
-    this.head = null;
+    this.head = new Node();
   }
 
-  adicionar(nome, idade) {
+  add(nome, idade) {
     const novoNo = new Node({ nome, idade });
-    if (!this.head) {
-      this.head = novoNo;
+
+    if (!this.head.proximo) {
+      this.head.proximo = novoNo;
     } else {
-      let atual = this.head;
+      let atual = this.head.proximo;
       while (atual.proximo) {
         atual = atual.proximo;
       }
@@ -18,46 +19,67 @@ class ListaPessoas {
     }
   }
 
-  // Converte a lista para array para facilitar a ordenação
-  toArray() {
-    let array = [];
-    let atual = this.head;
-    while (atual) {
-      array.push(atual.dado);
-      atual = atual.proximo;
-    }
-    return array;
-  }
-
-  // Constrói nova lista a partir de um array de objetos
-  static fromArray(arr) {
-    const novaLista = new ListaPessoas();
-    arr.forEach(({ nome, idade }) => novaLista.adicionar(nome, idade));
-    return novaLista;
-  }
-
-  // Retorna nova lista ordenada por nome
   ordenarPorNome() {
-    const array = this.toArray();
-    array.sort((a, b) => a.nome.localeCompare(b.nome));
-    return ListaPessoas.fromArray(array);
+    if (this.isEmpty()) return null;
+    if (!this.head.proximo.proximo) return this.toString();
+
+    let trocado;
+    do {
+      trocado = false;
+      let atual = this.head.proximo;
+
+      while (atual && atual.proximo) {
+        if (atual.dado.nome.toLowerCase() > atual.proximo.dado.nome.toLowerCase()) {
+          let temp = atual.dado;
+          atual.dado = atual.proximo.dado;
+          atual.proximo.dado = temp;
+          trocado = true;
+        }
+        atual = atual.proximo;
+      }
+    } while (trocado);
+
+    return this.toString();
   }
 
-  // Retorna nova lista ordenada por idade
   ordenarPorIdade() {
-    const array = this.toArray();
-    array.sort((a, b) => a.idade - b.idade);
-    return ListaPessoas.fromArray(array);
+    if (this.isEmpty()) return null;
+    if (!this.head.proximo.proximo) return this.toString();
+
+    let trocado;
+    do {
+      trocado = false;
+      let atual = this.head.proximo;
+
+      while (atual.proximo) {
+        if (atual.dado.idade > atual.proximo.dado.idade) {
+          const temp = atual.dado;
+          atual.dado = atual.proximo.dado;
+          atual.proximo.dado = temp;
+          trocado = true;
+        }
+        atual = atual.proximo;
+      }
+    } while (trocado);
+
+    return this.toString();
+  }
+
+  isEmpty() {
+    return this.head.proximo === null;
   }
 
   toString() {
-    let atual = this.head;
-    let str = '';
+    let atual = this.head.proximo;
+    let resultado = "";
     while (atual) {
-      str += `(${atual.dado.nome}, ${atual.dado.idade}) -> `;
+      resultado += `${atual.dado.nome}: ${atual.dado.idade}`;
+      if (atual.proximo) {
+        resultado += ", ";
+      }
       atual = atual.proximo;
     }
-    return str + 'null';
+    return resultado;
   }
 }
 
